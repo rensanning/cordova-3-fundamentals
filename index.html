@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cordova(aka PhoneGap) 3.x Fundamentals</title>
+
+    <meta name="description" content="Cordova (aka PhoneGap) 3.x Fundamentals">
+    <meta name="author" content="rensanning">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <section>
+          <h1>Cordova3.x Fundamentals</h1>
+          <h3>(aka PhoneGap)</h3>
+          <p>
+            <small>Created by <a href="http://rensanning.iteye.com/">rensanning</a> / <a href="http://www.weibo.com/rensanning">@rensanning</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h2>What is Cordova ?</h2>
+          <blockquote cite="http://cordova.apache.org/">
+            &ldquo;Apache Cordova is an open source framework for building cross-platform native applications using standard web technologies such as HTML, CSS and JavaScript.&rdquo;
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>PhoneGap vs Cordova ?</h2>
+          <img width="240" height="270" src="img/logo-cordova.png" alt="Cordova Logo">
+          <img width="240" height="270" src="img/logo-phonegap.png" alt="Cordova Logo">
+          <p>PhoneGap is a distribution of Apache Cordova。</p>
+          <ol>
+            <li>WebKit -- Chrome/Safari</li>
+            <li>Linux -- Ubuntu/CentOS</li>
+          </ol>
+        </section>
+
+        <section>
+          <section>
+            <h2>Pros and Cons</h2>
+            <p style="text-align: left;">Pros</p>
+            <ul style="float:left;padding-left:40px;">
+              <li>Open Source and Free</li>
+              <li>Web Development Skill Reuse</li>
+              <li>Platform Support</li>
+              <li>Plugin Architecture</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Pros and Cons</h2>
+            <p style="text-align: left;">Cons</p>
+            <ul style="float:left;padding-left:40px;">
+              <li>Performance</li>
+              <li>Browser Support</li>
+              <li>Web LAF（Look & Feel）</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Architecture</h2>
+            <h4>Native Application Architecture</h4>
+            <img src="img/Architecture.png" alt="Architecture">
+          </section>
+
+          <section>
+            <h2>Architecture</h2>
+            <h4>Streamlined plugin architecture</h4>
+            <img src="img/phonegap-plugins-2.jpg" alt="Plugin Architecture">
+          </section>
+
+          <section>
+            <h2>Architecture</h2>
+            <h4>Streamlined plugin architecture</h4>
+            <img src="img/cordova_plugin_diagram.png" alt="Plugin Architecture">
+          </section>
+
+          <section>
+            <h2>Architecture</h2>
+            <h4>Native Bridge</h4>
+            <img src="img/native-bridge.png" alt="Native Bridge">
+            <p><a href="http://rensanning.iteye.com/blog/2024988">>>more</a></p>
+          </section>
+        </section>
+
+        <section>
+          <h2>Platform Support</h2>
+          <img src="img/platform-support.png" alt="Platform Support">
+        </section>
+
+        <section>
+          <h2>Installing Cordova</h2>
+          <h4 style="text-align: left">Requirements</h4>
+          <pre>Android（JDK/Ant/Android SDK/ADT）、iOS(Xcode)、Node.js、Git</pre>
+          <h4 style="text-align: left">Install</h4>
+          <pre><code class="bash" data-trim>
+              npm install -g cordova
+          </code></pre>
+          <p><a href="http://rensanning.iteye.com/blog/2016364">>>more</a></p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Cordova CLI</h2>
+            <ul>
+              <li>Create： Generate folder skeleton</li>
+              <li>Build： Generate mobile native apps</li>
+              <li>Deploy： Transfer to emulators and Devices</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Cordova CLI</h2>
+            <pre><code class="bash" data-trim>
+cordova create MyApp com.rensanning.cordova MyApp
+cd MyApp
+cordova platforms add android 
+cordova plugin add org.apache.cordova.device 
+cordova build android
+cordova emulate android
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <h2>Project Structure</h2>
+          <pre>myApp/ 
+|-- config.xml 
+|-- hooks/ 
+| | |-- before_xxx/ 
+| | `-- after_xxx/ 
+|-- merges/ 
+| | |-- android/ 
+| | `-- ios/ 
+|-- platforms/ 
+| |-- android/ 
+| `-- ios/ 
+|-- plugins/ 
+| |-- org.apache.cordova.console/ 
+| `-- org.apache.cordova.device/ 
+|-- www/ 
+| |-- css/ 
+| |-- img/ 
+` |-- js/ 
+  `-- index.html</pre>
+          <p><a href="http://rensanning.iteye.com/blog/2020843">>>more</a></p>
+        </section>
+
+        <section>
+          <h2>config.xml</h2>
+          <img src="img/config.png" alt="Platform Support">
+          <p><a href="http://rensanning.iteye.com/blog/2019331">>>more</a></p>
+        </section>
+
+        <section>
+          <h2>Cordova APIs</h2>
+          <img src="img/apis.png" alt="Cordova APIs">
+          <p><a href="http://rensanning.iteye.com/blog/2021619">>>more</a></p>
+        </section>
+
+        <section>
+          <h2>Cordova Events</h2>
+          <ul>
+            <li><a href="http://rensanning.iteye.com/blog/2019289">deviceready</a></li>
+            <li>pause</li>
+            <li>resume</li>
+            <li>backbutton</li>
+            <li>menubutton</li>
+            <li>searchbutton</li>
+            <li>startcallbutton</li>
+            <li>endcallbutton</li>
+            <li>volumedownbutton</li>
+            <li>volumeupbutton</li>
+            <li>online</li>
+            <li>offline</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2>Debugging Applications</h2>
+            <ul>
+                <li>Browser</li>
+                <li>Native</li>
+                <li>Remote</li>
+            </ul>
+            <p><a href="http://rensanning.iteye.com/blog/2018417">>>more</a></p>
+          </section>
+          <section>
+            <h2>Apache Ripple</h2>
+            <img src="img/Debug-ripple.png" alt="Ripple">
+          </section>
+          <section>
+            <h2>weinre</h2>
+            <img src="img/Debug-weinre.png" alt="weinre">
+          </section>
+        </section>
+
+        <section>
+          <h2>UI Framewrok</h2>
+          <img src="img/ui.png" alt="UI Framewrok">
+        </section>
+
+        <section>
+          <h2>Cloud-based Build Services</h2>
+          <ul>
+              <li>PhoneGap Build</li>
+              <li>AppBuilder/Icenium</li>
+              <li>Appery.io/Tiggzi</li>
+              <li>Monaca</li>
+              <li>SAE云窗调试器</li>
+          </ul>
+          <p><a href="http://rensanning.iteye.com/blog/2031090">>>more</a></p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Reference</h2>
+            <img src="img/cordova3program.png" alt="Apache Cordova 3 Programming">
+          </section>
+          <section>
+            <h2>Reference</h2>
+            <ul>
+                <li><a href="http://slidedeck.io/zfkun/cordova-intro">Cordova – in-depth analysis</a></li>
+                <li><a href="http://www.slideshare.net/iivanoo/cordova-apis-and-instruments">CordovaAPIs and instruments</a></li>
+                <li><a href="http://devgirl.org/">Devgirl's Weblog</a></li>
+                <li><a href="http://iphonedevlog.wordpress.com/">iPhone Dev Log</a></li>
+                <li><a href="http://phonegap-fan.com/school/">PhoneGap School</a></li>
+                <li><a href="http://coenraets.org/blog/cordova-phonegap-3-tutorial/">Cordova (aka PhoneGap) 3.x Tutorial</a></li>
+                <li><a href="http://phonegap.com/blog/2013/06/20/coming-soon-phonegap30/">What to expect in PhoneGap 3.0</a></li>
+                <li><a href="http://phonegap.com/2012/03/19/phonegap-cordova-and-what%E2%80%99s-in-a-name/">PhoneGap, Cordova, and what’s in a name?</a></li>
+                <li><a href="http://kevinwhinnery.com/post/22764624253/comparing-titanium-and-phonegap">Comparing Titanium and PhoneGap</a></li>
+                <li><a href="http://www.open-logix.com/ibm-worklight-and-phonegap-comparison/">IBM Worklight and Phonegap Comparison</a></li>
+                <li><a href="http://www.developereconomics.com/pros-cons-top-5-cross-platform-tools/">Pros and Cons of the Top 5 Cross-Platform Tools</a></li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+            <h1>Thanks!</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, 
+        transition: Reveal.getQueryHash().transition || 'default', 
+
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>
